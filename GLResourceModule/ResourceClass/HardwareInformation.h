@@ -45,7 +45,7 @@ namespace GLResourceModule
 	public:
 		property MemoryType MemoryType;
 		property String^ Name;
-		property UInt64^ TotalSize; //In MB
+		property UInt64 TotalSize; //In MB
 
 	internal:
 		MemoryInformation(void) { };
@@ -67,7 +67,7 @@ namespace GLResourceModule
 		//http://support.microsoft.com/kb/2787534/pt-br
 	public: 
 		property String^ AdapterVideoName;
-		property UInt32^ DedicatedMemory; //In MB
+		property UInt32 DedicatedMemory; //In MB
 		property String^ Description;
 		property String^ DriverVersion;
 		property List<String^>^ Resolution;
@@ -94,11 +94,11 @@ namespace GLResourceModule
 		//http://support.microsoft.com/kb/953955/pt-br 
 	public:
 		property Architecture Architecture;
-		property UInt32^ ClockSpeed; 
-		property UInt32^ Family;
+		property UInt32 ClockSpeed; 
+		property UInt16 Family;
 		property String^ Manufacturer;
 		property String^ Name;
-		property UInt32^ NumberOfCores;//Não disponível para Windows XP e Windows Server 2003
+		property UInt32 NumberOfCores;//Não disponível para Windows XP e Windows Server 2003
 
 	internal:
 		CPUInformation(void) { };
@@ -134,6 +134,7 @@ namespace GLResourceModule
 			}
 		}
 
+		static void ReadHardware();
 		static array<GPUInformation^>^ GetGPUInfo();
 		static array<MemoryInformation^>^ GetMemoryInfo();
 		static CPUInformation^ GetCPUInfo();

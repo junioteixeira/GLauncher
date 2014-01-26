@@ -177,8 +177,8 @@ namespace System.Net.Sockets
                 {
                     String value = Convert.ChangeType(Value, typeReturn) as string;
                     byte[] valuebyte = Encoding.UTF8.GetBytes(value);
-                    byte[] sizevalue = BitConverter.GetBytes((ushort)valuebyte.Length);
-                    networkStream.Write(sizevalue, 0, 2);
+                    byte[] sizevalue = BitConverter.GetBytes(valuebyte.Length);
+                    networkStream.Write(sizevalue, 0, sizevalue.Length);
                     networkStream.Write(valuebyte, 0, valuebyte.Length);
                 }
                 else

@@ -11,19 +11,18 @@ using DevComponents.DotNetBar.Controls;
 using DevComponents.DotNetBar.Metro;
 using DevComponents.DotNetBar.Metro.ColorTables;
 using GLModule.Constants;
-using GLResourceModule;
 
 namespace GLauncherForm.Theme_Metro
 {
     public partial class MainForm : DevComponents.DotNetBar.Metro.MetroAppForm
     {
+        ConsoleWindow console;
         MainControl Main = null;
         SettingsGameControl _SettingsGame = null;
-        public MainForm()
+        public MainForm(ConsoleWindow consoleWnd)
         {
             InitializeComponent();
-            StyleManager.MetroColorGeneratorParameters = MetroColorGeneratorParameters.Default;
-            MessageBoxEx.EnableGlass = false;
+            this.console = consoleWnd;
             this.Text = GameConstants.NameGame + " - GLauncher";
             this.SuspendLayout();
             this.Main = new MainControl();
@@ -32,7 +31,7 @@ namespace GLauncherForm.Theme_Metro
             this.Main.SlideSide = DevComponents.DotNetBar.Controls.eSlideSide.Right;
             this.Main.Click += delegate(object sender, EventArgs e) { Main.IsOpen = false; };
             this.Main.TileNews.Click += delegate(object sender, EventArgs e)
-            { 
+            {
                 this.Main.IsOpen = false;
                 this.TabNews.Select();
             };
@@ -82,14 +81,13 @@ namespace GLauncherForm.Theme_Metro
         {
             switch (m.Msg)
             {
-                case 0x0112:
+                case 0x0112: //WM_SYSCOMMAND
                     {
                         int WParam = m.WParam.ToInt32() & 0xFFF0;
-                        if (WParam == 0xF030)
-                        { return; }
-
-                        break;
+                        if (WParam == 0xF030) //0xF030 == Maximize
+                            return;
                     }
+                    break;
             }
             base.WndProc(ref m);
         }
@@ -97,6 +95,19 @@ namespace GLauncherForm.Theme_Metro
         private void btHome_Click(object sender, EventArgs e)
         {
             this.Main.IsOpen = !this.Main.IsOpen;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (ConsoleConstants.AllowConsoleWindow && keyData == ConsoleConstants.KeyConsoleWindow)
+            {
+                this.console.Visible = !this.console.Visible;
+                if (this.console.Visible)
+                    ConsoleConstants.WriteInConsole("Console opened", Color.DarkGreen);
+                else
+                    ConsoleConstants.WriteInConsole("Console closed", Color.Red);
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

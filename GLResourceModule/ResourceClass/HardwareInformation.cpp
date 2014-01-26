@@ -25,12 +25,12 @@ CPUInformation^ HardwareInformation::GetCPUInfo()
 		for each(ManagementObject^ c in processorColletion)
 		{
 			CPUInformation^ cpuInfo = gcnew CPUInformation();
-			cpuInfo->Architecture = static_cast<Architecture>(c["Architecture"]);
-			cpuInfo->ClockSpeed = (UInt32^)(c["CurrectClockSpeed"]);
-			cpuInfo->Family = (UInt32^)(c["Family"]);
+			cpuInfo->Architecture = (Architecture)((UInt16)c["Architecture"]);
+			cpuInfo->ClockSpeed = (UInt32)(c["CurrentClockSpeed"]);
+			cpuInfo->Family = (UInt16)(c["Family"]);
 			cpuInfo->Manufacturer = (String^)(c["Manufacturer"]);
 			cpuInfo->Name = (String^)(c["Name"]);
-			cpuInfo->NumberOfCores = (UInt32^)(c["NumberOfCores"]);
+			cpuInfo->NumberOfCores = (UInt32)(c["NumberOfCores"]);
 			return cpuInfo;
 		}
 	}
@@ -68,13 +68,12 @@ List<String^>^ GetResolution()
 	List<String^>^ ReturnValue = gcnew List<String^>();
 	DEVMODE dm = {0};
 	dm.dmSize = sizeof(dm);
-	for(int i = 0;EnumDisplaySettings(NULL,i, &dm) != 0; i++)
+	for(int i = 0; EnumDisplaySettings(NULL,i, &dm) != 0; i++)
 	{
-		String^ Value = (int)dm.dmPelsWidth + "x" + (int)dm.dmPelsHeight;
+		String^ Value = dm.dmPelsWidth + "x" + dm.dmPelsHeight;
 		if(ReturnValue->IndexOf(Value) == -1)
 			ReturnValue->Add(Value);
 	}
-
 	return ReturnValue;
 };
 
@@ -103,4 +102,16 @@ array<GPUInformation^>^ HardwareInformation::GetGPUInfo()
 	{
 		return nullptr;
 	}
+};
+
+void HardwareInformation::ReadHardware()
+{
+	if(m_MemoryInfo == nullptr)
+		m_MemoryInfo = HardwareInformation::GetMemoryInfo();
+
+	if(m_GPUInfo == nullptr)
+		m_GPUInfo = HardwareInformation::GetGPUInfo();
+
+	if(m_CPUInfo == nullptr)
+		m_CPUInfo = HardwareInformation::GetCPUInfo();
 };

@@ -54,6 +54,13 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=10.9.0.1, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -66,10 +73,18 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Theme Metro\ConsoleWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Theme Metro\ConsoleWindow.Designer.cs">
+      <DependentUpon>ConsoleWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme Metro\Extension.cs" />
     <Compile Include="Theme Metro\MainControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +103,12 @@
     <Compile Include="Theme Metro\SettingsGameControl.Designer.cs">
       <DependentUpon>SettingsGameControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Theme Metro\SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Theme Metro\SplashForm.Designer.cs">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -98,6 +119,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Theme Metro\ConsoleWindow.resx">
+      <DependentUpon>ConsoleWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Theme Metro\MainControl.resx">
       <DependentUpon>MainControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Theme Metro\SettingsGameControl.resx">
       <DependentUpon>SettingsGameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme Metro\SplashForm.resx">
+      <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -160,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Theme Metro\Images\Invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Theme Metro\Images\muonline-logo-32169.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

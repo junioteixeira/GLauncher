@@ -35,7 +35,21 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClearScript">
+      <HintPath>..\References\ClearScript.dll</HintPath>
+    </Reference>
+    <Reference Include="Jint, Version=0.9.2.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Jint.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Visual Studio 2010\Projects\Aprendizagem\C#\Json50r8\Bin\Net40\Newtonsoft.Json.dll</HintPath>
@@ -45,13 +59,20 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ConsoleConstants.cs" />
     <Compile Include="Constants\GameConstants.cs" />
+    <Compile Include="Constants\PluginJS.cs" />
     <Compile Include="Constants\SettingsGameConstants.cs" />
     <Compile Include="Constants\TcpConstants.cs" />
     <Compile Include="Constants\UpdateConstants.cs" />
+    <Compile Include="PluginJS\Clear\RegisterFunctionClear.cs" />
+    <Compile Include="PluginJS\FunctionsEnum.cs" />
+    <Compile Include="PluginJS\InvokeFunctions.cs" />
+    <Compile Include="PluginJS\RegisterFunction.cs" />
     <Compile Include="SettingsGame\SettingsAttributes.cs" />
     <Compile Include="SettingsGame\SettingsGame.cs" />
     <Compile Include="Tcp\ClientTCP.cs" />
@@ -62,7 +83,20 @@
     <Compile Include="Update\Delegates.cs" />
     <Compile Include="Update\UpdateFiles.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ClearScriptV8-32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ClearScriptV8-64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="v8-ia32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="v8-x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

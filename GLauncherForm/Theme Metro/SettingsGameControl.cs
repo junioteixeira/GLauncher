@@ -10,7 +10,6 @@ using DevComponents.DotNetBar;
 using GLModule.Constants;
 using GLModule.SettingsGame;
 using GLResourceModule;
-using System.Text.RegularExpressions;
 using DevComponents.DotNetBar.Controls;
 
 namespace GLauncherForm.Theme_Metro

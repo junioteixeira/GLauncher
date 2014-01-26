@@ -91,20 +91,23 @@ namespace GLModule.Tcp
         /// Enviar dados através da Stream
         /// </summary>
         /// <param name="Command">Tipo do comando a ser enviado</param>
-        /// <param name="Arguments">Argumentos do comando. Caso não tenha, deixe-o null</param>
+        /// <param name="Arguments">Argumentos do comando. Caso não tenha, deixe-o vazio</param>
         /// <returns>Informa se os dados foram enviados corretamente</returns>
         public bool SendData(TypeCommand Command, params object[] Arguments)
         {
-            bool ReturnMethod = true;
-            bool HasArguments = Arguments.Length > 0;
+            lock (this)
+            {
+                bool ReturnMethod = true;
+                bool HasArguments = Arguments.Length > 0;
 
-            ReturnMethod &= netWorkStream.WriteSpecific<ushort>((ushort)(Command));
-            ReturnMethod &= netWorkStream.WriteSpecific<bool>(HasArguments);
+                ReturnMethod &= netWorkStream.WriteSpecific<ushort>((ushort)(Command));
+                ReturnMethod &= netWorkStream.WriteSpecific<bool>(HasArguments);
 
-            if (HasArguments)
-                ReturnMethod &= netWorkStream.WriteSpecific<string>(JsonConvert.SerializeObject(Arguments));
+                if (HasArguments)
+                    ReturnMethod &= netWorkStream.WriteSpecific<string>(JsonConvert.SerializeObject(Arguments));
 
-            return ReturnMethod;
+                return ReturnMethod;
+            }
         }
 
         public void Disconnect()
