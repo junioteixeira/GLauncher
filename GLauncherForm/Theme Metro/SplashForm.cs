@@ -35,7 +35,7 @@ namespace GLauncherForm.Theme_Metro
             lb.Text = "<div align=\"right\"><font size=\"+4\">Carregando configurações do tema.</font></div>");
             StyleManager.MetroColorGeneratorParameters = MetroColorGeneratorParameters.Default;
             MessageBoxEx.EnableGlass = false;
-            progressBarX1.Call<ProgressBarX>(pb => pb.Value = 33); //Ajustar
+            progressBarX1.Call<ProgressBarX>(pb => pb.Value = 33);
 
             lbInfo.Call<LabelX>(lb =>
             lb.Text = "<div align=\"right\"><font size=\"+4\">Lendo Hardware</font></div>");
