@@ -84,7 +84,7 @@ namespace GLauncherForm.Theme_Metro
                 case 0x0112: //WM_SYSCOMMAND
                     {
                         int WParam = m.WParam.ToInt32() & 0xFFF0;
-                        if (WParam == 0xF030) //0xF030 == Maximize
+                        if (WParam == 0xF030) //Maximize
                             return;
                     }
                     break;
@@ -101,11 +101,12 @@ namespace GLauncherForm.Theme_Metro
         {
             if (ConsoleConstants.AllowConsoleWindow && keyData == ConsoleConstants.KeyConsoleWindow)
             {
-                this.console.Visible = !this.console.Visible;
-                if (this.console.Visible)
+                console.Visible = !console.Visible;
+                if (console.Visible)
                     ConsoleConstants.WriteInConsole("Console opened", Color.DarkGreen);
                 else
                     ConsoleConstants.WriteInConsole("Console closed", Color.Red);
+
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }

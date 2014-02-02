@@ -4,30 +4,41 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using GLModule.Constants;
-using Jint;
-using Jint.Native;
+using Microsoft.ClearScript;
+using Microsoft.ClearScript.V8;
 
 namespace GLModule.PluginJS
 {
     public static class RegisterFunction
     {
-        public static Dictionary<FunctionsEnum, List<JsFunction>> FunctionsJS = new Dictionary<FunctionsEnum, List<JsFunction>>();
+        public static Dictionary<FunctionsEnum, Dictionary<string, Object>> FunctionsJS = new Dictionary<FunctionsEnum, Dictionary<string, object>>();
+        public static Dictionary<FunctionsEnum, List<Object>> SafeFunctionsJS = new Dictionary<FunctionsEnum, List<Object>>();
 
-        public static void LoadFunctions()
+        private static string CurrentFile = String.Empty;
+
+        /// <summary>
+        /// Carregar plugins
+        /// </summary>
+        public static void LoadPlugins()
         {
-            if (!Directory.Exists("PluginJS")) { return; }
+            if (!Directory.Exists(Constants.PluginJS.PathPluginJS)
+             || !Constants.PluginJS.AllowPluginJS)
+            { return; }
+
+            Engines.EnginePlugins.AddHostObject("RegisterFunc", new Action<Object, int>(RegisterFunc));
+
             bool ErroPlugins = false;
-            JintEngine Engine = new JintEngine()
-                .SetFunction("RegisterFunc", new Action<JsFunction, double>(RegisterFunc));
-            string[] FilesJS = Directory.GetFiles("PluginJS\\", "*.js", SearchOption.AllDirectories);
+            string[] FilesJS = Directory.GetFiles(Constants.PluginJS.PathPluginJS, "*.js", SearchOption.AllDirectories);
             for (int i = 0; i < FilesJS.Length; i++)
             {
+                CurrentFile = FilesJS[i];
                 string Script = File.ReadAllText(FilesJS[i]);
                 try
                 {
-                    Engine.Run(Script);
-                    Engine.CallFunction("Register");
+                    Engines.EnginePlugins.Execute(Script);
+                    Engines.EnginePlugins.Script.Register();
                 }
                 catch
                 {
@@ -40,9 +51,13 @@ namespace GLModule.PluginJS
 
             if (!ErroPlugins)
                 ConsoleConstants.WriteInConsole("Plugins em JavaScript, carregados com sucesso", Color.DarkGreen);
+
+            HostTypeCollection LibsExport = new HostTypeCollection("mscorlib", "System", "System.Core", "GLResourceModule");
+            Engines.EnginePlugins.AddHostObject("clr", LibsExport);
+            Engines.EnginePlugins.AddHostObject("MessageBox", new Func<string, string, DialogResult>(MessageBox.Show));
         }
 
-        public static void RegisterFunc(JsFunction jsFunc, double functionEnum)
+        private static void RegisterFunc(Object jsFunc, int functionEnum)
         {
             FunctionsEnum funcEnum = (FunctionsEnum)functionEnum;
             switch (funcEnum)
@@ -55,21 +70,90 @@ namespace GLModule.PluginJS
                 case FunctionsEnum.UpdateFileStarted:
                     {
                         if (FunctionsJS.ContainsKey(funcEnum))
-                            FunctionsJS[funcEnum].Add(jsFunc);
+                            FunctionsJS[funcEnum].Add(CurrentFile, jsFunc);
                         else
-                            FunctionsJS.Add(funcEnum, new List<JsFunction> { jsFunc });
+                            FunctionsJS.Add(funcEnum, new Dictionary<string, Object> { { CurrentFile, jsFunc } });
                     }
                     break;
 
                 default:
                     {
                         ConsoleConstants.WriteInConsole(
-                            "Função informada num JavaScript não corresponde a alguma função correta"
+                            "Função informada num JavaScript não corresponde a uma função correta"
                            + "\nCódigo informado: " + functionEnum
                            , System.Drawing.Color.DarkRed);
                     }
                     break;
             }
+        }
+
+        private static void RegisterSafeFunc(Object jsFunc, int functionEnum)
+        {
+            FunctionsEnum funcEnum = (FunctionsEnum)functionEnum;
+            switch (funcEnum)
+            {
+                case FunctionsEnum.ComputeFileCompleted:
+                case FunctionsEnum.ComputeFileProgressed:
+                case FunctionsEnum.ComputeFileStarted:
+                case FunctionsEnum.UpdateFileCompleted:
+                case FunctionsEnum.UpdateFileProgressed:
+                case FunctionsEnum.UpdateFileStarted:
+                    {
+                        if (SafeFunctionsJS.ContainsKey(funcEnum))
+                            SafeFunctionsJS[funcEnum].Add(jsFunc);
+                        else
+                            SafeFunctionsJS.Add(funcEnum, new List<Object> { jsFunc });
+                    }
+                    break;
+
+                default:
+                    {
+                        ConsoleConstants.WriteInConsole(
+                            "Função informada num SafePlugin não corresponde a uma função correta"
+                           + "\nCódigo informado: " + functionEnum
+                           , System.Drawing.Color.DarkRed);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Carregar plugins seguros, recebidos diretamente do servidor
+        /// </summary>
+        /// <param name="SafePlugins">Scripts</param>
+        /// <param name="LibsImport">Libs para exportar para os scripts</param>
+        public static void LoadSafePlugins(string[] SafePlugins, string[] LibsImport)
+        {
+            if (SafePlugins.Length == 0 || !Constants.PluginJS.AllowSafePlugin)
+                return;
+            if (LibsImport.Length > 0)
+            {
+                HostTypeCollection Libs = new HostTypeCollection(LibsImport);
+                Engines.EngineSafePlugins.AddHostObject("clr", Libs);
+            }
+
+            Boolean ErroPlugins = false;
+            Engines.EngineSafePlugins.AddHostObject("RegisterFunc", new Action<Object, int>(RegisterSafeFunc));
+
+            for (int i = 0; i < SafePlugins.Length; i++)
+            {
+                string CurrentScript = SafePlugins[i];
+                try
+                {
+                    Engines.EngineSafePlugins.Execute(CurrentScript);
+                    Engines.EngineSafePlugins.Script.Register();
+                }
+                catch (Exception ex)
+                {
+                    ErroPlugins = true;
+                    ConsoleConstants.WriteInConsole(
+                        "Falha ao carregar um SafePlugin\nErro:" +
+                         ex.Message, Color.DarkRed);
+                }
+            }
+
+            if (!ErroPlugins)
+                ConsoleConstants.WriteInConsole("SafePlugins carregados com sucesso", Color.DarkGreen);
         }
     }
 }

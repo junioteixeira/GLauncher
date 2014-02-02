@@ -134,7 +134,7 @@ namespace GLResourceModule
 			}
 		}
 
-		static void ReadHardware();
+		static bool ReadHardware([Out] array<String^>^% Erros);
 		static array<GPUInformation^>^ GetGPUInfo();
 		static array<MemoryInformation^>^ GetMemoryInfo();
 		static CPUInformation^ GetCPUInfo();

@@ -50,9 +50,7 @@ namespace GLModule.SettingsGame
                 {
                     foreach (object att in propertys[i].GetCustomAttributes(false))
                     {
-                        if (att is NonConfigAttribute)
-                            goto ContinueFor;
-                        else if (att is ExternFileConfigAttribute)
+                        if (att is ExternFileConfigAttribute)
                         {
                             ExternFileConfigAttribute EF = att as ExternFileConfigAttribute;
                             string Path = EF.Path.Length > 0 ? EF.Path : SettingsGameConstants.PathExternFile;
@@ -90,6 +88,8 @@ namespace GLModule.SettingsGame
                                 throw new Exception("Atributo " + Param + " não encontrado nos parâmetros do Jogo");
                             SettingsGameConstants.ParamStartGame = SettingsGameConstants.ParamStartGame.Replace(Param, propertys[i].GetValue(null, null).ToString());
                         }
+                        else
+                            goto ContinueFor;
                     }
                 ContinueFor:
                     continue;

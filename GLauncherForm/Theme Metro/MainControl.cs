@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Controls;
+using System.Diagnostics;
+using GLModule.Constants;
 
 namespace GLauncherForm.Theme_Metro
 {
@@ -26,12 +28,22 @@ namespace GLauncherForm.Theme_Metro
 
         private void labelX3_Click(object sender, EventArgs e)
         {
-           // System.Diagnostics.Process.Start("http://#");
+           // Process.Start("http://#");
         }
 
-        private void TileSettingsGame_Click(object sender, EventArgs e)
+        private void TileSite_Click(object sender, EventArgs e)
         {
+            Process.Start(GameConstants.UrlSite);
+        }
 
+        private void TileForum_Click(object sender, EventArgs e)
+        {
+            Process.Start(GameConstants.UrlForum);
+        }
+
+        private void TileHelp_Click(object sender, EventArgs e)
+        {
+            Process.Start(GameConstants.UrlHelp);
         }
     }
 }

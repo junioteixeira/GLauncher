@@ -1,4 +1,4 @@
-namespace GLauncherForm.Theme_Metro
+﻿namespace GLauncherForm.Theme_Metro
 {
     partial class ConsoleWindow
     {
@@ -28,47 +28,36 @@ namespace GLauncherForm.Theme_Metro
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBoxEx1 = new DevComponents.DotNetBar.Controls.RichTextBoxEx();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // richTextBoxEx1
+            // richTextBox1
             // 
-            this.richTextBoxEx1.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.richTextBoxEx1.BackgroundStyle.Class = "RichTextBoxBorder";
-            this.richTextBoxEx1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.richTextBoxEx1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxEx1.ForeColor = System.Drawing.Color.Black;
-            this.richTextBoxEx1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBoxEx1.Name = "richTextBoxEx1";
-            this.richTextBoxEx1.ReadOnly = true;
-            this.richTextBoxEx1.Size = new System.Drawing.Size(542, 325);
-            this.richTextBoxEx1.TabIndex = 0;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Location = new System.Drawing.Point(3, 2);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(488, 403);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // ConsoleWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BottomLeftCornerSize = 0;
-            this.BottomRightCornerSize = 0;
-            this.ClientSize = new System.Drawing.Size(542, 327);
-            this.Controls.Add(this.richTextBoxEx1);
-            this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.ClientSize = new System.Drawing.Size(494, 408);
+            this.Controls.Add(this.richTextBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ConsoleWindow";
-            this.Text = "ConsoleWindow - GLauncher";
-            this.TopLeftCornerSize = 0;
-            this.TopRightCornerSize = 0;
+            this.Text = "Console - GLauncher";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevComponents.DotNetBar.Controls.RichTextBoxEx richTextBoxEx1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

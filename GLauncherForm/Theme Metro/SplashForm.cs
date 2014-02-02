@@ -10,22 +10,25 @@ using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Controls;
 using DevComponents.DotNetBar.Metro.ColorTables;
+using GLModule.Constants;
 using GLModule.PluginJS;
-using GLModule.PluginJS.Clear;
 using GLResourceModule;
 
 namespace GLauncherForm.Theme_Metro
 {
     public partial class SplashForm : Form
     {
-        ConsoleWindow consoleWnd = new ConsoleWindow();
+        ConsoleWindow consoleWnd;
+        MainForm mainForm;
         public SplashForm()
         {
             InitializeComponent();
-        }
 
-        private void SplashForm_Load(object sender, EventArgs e)
-        {
+            consoleWnd = new ConsoleWindow();
+            mainForm = new MainForm(consoleWnd);
+
+            ConsoleConstants.WriteInConsole("GLauncher iniciado", Color.DarkBlue);
+
             new Thread(LoadLauncher).Start();
         }
 
@@ -39,13 +42,23 @@ namespace GLauncherForm.Theme_Metro
 
             lbInfo.Call<LabelX>(lb =>
             lb.Text = "<div align=\"right\"><font size=\"+4\">Lendo Hardware</font></div>");
-            HardwareInformation.ReadHardware();
+
+            string[] Erros;
+            HardwareInformation.ReadHardware(out Erros);
+            if (Erros.Length > 0)
+                for (int i = 0; i < Erros.Length; i++)
+                    ConsoleConstants.WriteInConsole(Erros[i], Color.DarkRed);
+            else
+                ConsoleConstants.WriteInConsole("Hardware lido com sucesso", Color.DarkGreen);
+
             progressBarX1.Call<ProgressBarX>(pb => pb.Value = 66);
 
             lbInfo.Call<LabelX>(lb =>
             lb.Text = "<div align=\"right\"><font size=\"+4\">Carregando plugins.</font></div>");
-            RegisterFunctionClear.Teste();
+            RegisterFunction.LoadPlugins();
             progressBarX1.Call<ProgressBarX>(pb => pb.Value = 100);
+
+            //InvokeFunctions.Invoke(FunctionsEnum.ComputeFileCompleted, new string[] { "Arg1 ar1", "Arg1 ar2" }, "Arg2");
 
             this.Invoke(new Action(LoadMainForm));
         }
@@ -54,7 +67,6 @@ namespace GLauncherForm.Theme_Metro
         {
             this.Visible = false;
 
-            MainForm mainForm = new MainForm(consoleWnd);
             mainForm.ShowDialog();
 
             this.Close();

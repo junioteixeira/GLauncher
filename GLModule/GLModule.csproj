@@ -69,7 +69,7 @@
     <Compile Include="Constants\SettingsGameConstants.cs" />
     <Compile Include="Constants\TcpConstants.cs" />
     <Compile Include="Constants\UpdateConstants.cs" />
-    <Compile Include="PluginJS\Clear\RegisterFunctionClear.cs" />
+    <Compile Include="PluginJS\Engines.cs" />
     <Compile Include="PluginJS\FunctionsEnum.cs" />
     <Compile Include="PluginJS\InvokeFunctions.cs" />
     <Compile Include="PluginJS\RegisterFunction.cs" />
@@ -82,6 +82,10 @@
     <Compile Include="Tcp\TcpData\TypeCommand.cs" />
     <Compile Include="Update\Delegates.cs" />
     <Compile Include="Update\UpdateFiles.cs" />
+    <Compile Include="Warnings\Hardware\CpuWarning.cs" />
+    <Compile Include="Warnings\Hardware\GpuWarning.cs" />
+    <Compile Include="Warnings\Hardware\MemoryWarning.cs" />
+    <Compile Include="Warnings\IWarning.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClearScriptV8-32.dll">
@@ -96,6 +100,17 @@
     <Content Include="v8-x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Warnings\Software\" />
+    <Folder Include="Warnings\SO\" />
+    <Folder Include="Warnings\Updates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GLResourceModule\GLResourceModule.vcxproj">
+      <Project>{160fdd74-482c-4fe9-a567-ee5e26cb90dd}</Project>
+      <Name>GLResourceModule</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

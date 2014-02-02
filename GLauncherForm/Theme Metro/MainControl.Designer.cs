@@ -134,7 +134,6 @@
             this.TileSettingsGame.TileStyle.PaddingTop = 4;
             this.TileSettingsGame.TileStyle.TextColor = System.Drawing.Color.White;
             this.TileSettingsGame.TitleText = "Configuração";
-            this.TileSettingsGame.Click += new System.EventHandler(this.TileSettingsGame_Click);
             // 
             // TileSite
             // 
@@ -155,6 +154,7 @@
             this.TileSite.TileStyle.PaddingTop = 4;
             this.TileSite.TileStyle.TextColor = System.Drawing.Color.White;
             this.TileSite.TitleText = "Site";
+            this.TileSite.Click += new System.EventHandler(this.TileSite_Click);
             // 
             // TileNews
             // 
@@ -195,6 +195,7 @@
             this.TileForum.TileStyle.PaddingTop = 4;
             this.TileForum.TileStyle.TextColor = System.Drawing.Color.White;
             this.TileForum.TitleText = "Fórum";
+            this.TileForum.Click += new System.EventHandler(this.TileForum_Click);
             // 
             // TileHelp
             // 
@@ -214,6 +215,7 @@
             this.TileHelp.TileStyle.PaddingRight = 4;
             this.TileHelp.TileStyle.PaddingTop = 4;
             this.TileHelp.TileStyle.TextColor = System.Drawing.Color.White;
+            this.TileHelp.Click += new System.EventHandler(this.TileHelp_Click);
             // 
             // labelX1
             // 
@@ -292,11 +294,11 @@
         private DevComponents.DotNetBar.ItemContainer itemContainer1;
         public DevComponents.DotNetBar.Metro.MetroTileItem TileStartGame;
         public DevComponents.DotNetBar.Metro.MetroTileItem TileSettingsGame;
-        public DevComponents.DotNetBar.Metro.MetroTileItem TileSite;
         public DevComponents.DotNetBar.Metro.MetroTileItem TileNews;
-        public DevComponents.DotNetBar.Metro.MetroTileItem TileForum;
-        public DevComponents.DotNetBar.Metro.MetroTileItem TileHelp;
         private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.Metro.MetroTileItem TileSite;
+        private DevComponents.DotNetBar.Metro.MetroTileItem TileForum;
+        private DevComponents.DotNetBar.Metro.MetroTileItem TileHelp;
 
 
     }

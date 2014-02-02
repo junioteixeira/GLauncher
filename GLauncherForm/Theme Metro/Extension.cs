@@ -9,7 +9,7 @@ namespace System.Windows.Forms
 {
     public static class Extension
     {
-        public static void AppendText(this RichTextBoxEx box, string text, Color color)
+        public static void AppendText(this RichTextBox box, string text, Color color)
         {
             box.SelectionStart = box.TextLength;
             box.SelectionLength = 0;
@@ -19,12 +19,28 @@ namespace System.Windows.Forms
             box.SelectionColor = box.ForeColor;
         }
 
-        public static void Call<T>(this Control control, Action<T> action) 
-            where T: Control
+        public static void Call<T>(this Control control, Action<T> action)
+            where T : Control
         {
             if (control.InvokeRequired)
             {
                 control.Invoke(new Action(() =>
+                {
+                    action(control as T);
+                }));
+            }
+            else
+            {
+                action(control as T);
+            }
+        }
+
+        public static void CallAsync<T>(this Control control, Action<T> action)
+            where T : Control
+        {
+            if (control.InvokeRequired)
+            {
+                control.BeginInvoke(new Action(() =>
                 {
                     action(control as T);
                 }));
