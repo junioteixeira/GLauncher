@@ -17,7 +17,22 @@ namespace GLauncherForm.Theme_Metro
         public MainControl()
         {
             InitializeComponent();
+            StaticInstances.ClientConn.EventLogin += OnLogin;
+            StaticInstances.ClientConn.EventUnlogin += OnUnlogin;
         }
+
+
+        #region Events Socket
+        private void OnLogin(bool SucessLogin, string MsgErro)
+        {
+            
+        }
+
+        private void OnUnlogin(bool SucessUnlogin, string MsgErro)
+        {
+
+        }
+        #endregion
 
         protected override void OnResize(EventArgs e)
         {

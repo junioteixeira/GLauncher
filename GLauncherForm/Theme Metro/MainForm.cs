@@ -19,6 +19,8 @@ namespace GLauncherForm.Theme_Metro
         ConsoleWindow console;
         MainControl Main = null;
         SettingsGameControl _SettingsGame = null;
+        bool Logged = false;
+
         public MainForm(ConsoleWindow consoleWnd)
         {
             InitializeComponent();
@@ -29,7 +31,18 @@ namespace GLauncherForm.Theme_Metro
             this.Controls.Add(Main);
             this.Main.BringToFront();
             this.Main.SlideSide = DevComponents.DotNetBar.Controls.eSlideSide.Right;
-            this.Main.Click += delegate(object sender, EventArgs e) { Main.IsOpen = false; };
+            this.ResumeLayout(false);
+            UpdateControlsSizeAndLocation(Main);
+            ApplyEvents();
+        }
+
+        private void ApplyEvents()
+        {
+            this.Main.Click += delegate(object sender, EventArgs e) 
+            {
+                Main.IsOpen = false;
+            };
+
             this.Main.TileNews.Click += delegate(object sender, EventArgs e)
             {
                 this.Main.IsOpen = false;
@@ -43,8 +56,22 @@ namespace GLauncherForm.Theme_Metro
                 if (!this.IsModalPanelDisplayed) { this.ShowModalPanel(_SettingsGame, eSlideSide.Left); }
             };
 
-            this.ResumeLayout(false);
-            UpdateControlsSizeAndLocation(Main);
+            this.btSettings.Click += delegate(object sender, EventArgs e)
+            {
+                SettingsGLControl settings = new SettingsGLControl();
+                settings.CloseUserControl += CloseUserControl;
+                if (!this.IsModalPanelDisplayed) { this.ShowModalPanel(settings, eSlideSide.Left); }
+            };
+
+            this.Main.pictureBox1.Click += delegate(object sender, EventArgs e)
+            {
+                if (!Logged)
+                {
+                    LoginControl login = new LoginControl();
+                    login.CloseUserControl += CloseUserControl;
+                    if (!this.IsModalPanelDisplayed) { this.ShowModalPanel(login, eSlideSide.Left); }
+                }
+            };
         }
 
 
@@ -74,6 +101,17 @@ namespace GLauncherForm.Theme_Metro
             {
                 UserControl control = sender as UserControl;
                 this.CloseModalPanel(control, eSlideSide.Left);
+            }
+        }
+
+        private void CloseUserControlDispose(object sender, EventArgs e)
+        {
+            if (this.IsModalPanelDisplayed)
+            {
+                UserControl control = sender as UserControl;
+                this.CloseModalPanel(control, eSlideSide.Left);
+
+                control.Dispose();
             }
         }
 

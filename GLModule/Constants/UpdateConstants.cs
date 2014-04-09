@@ -16,7 +16,5 @@ namespace GLModule.Constants
         /// http://msdn.microsoft.com/pt-br/library/wet69s13%28v=vs.100%29.aspx
         /// </summary>
         public static readonly HashAlgorithm TypeHash = HashAlgorithm.Create("SHA1");
-
-        public const string UrlUpdate = "http://localhost:8090/update/";
     }
 }

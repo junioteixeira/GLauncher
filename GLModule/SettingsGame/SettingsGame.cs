@@ -6,6 +6,7 @@ using System.Text;
 using System.IO;
 using GLModule.Constants;
 using Microsoft.Win32;
+using GLModule.PluginJS;
 
 namespace GLModule.SettingsGame
 {
@@ -99,16 +100,18 @@ namespace GLModule.SettingsGame
                     foreach (string Path in ExternFile.Keys)
                     {
                         if (File.Exists(Path)) { File.WriteAllText(Path, String.Empty); }
-                        using(FileStream FS = File.Open(Path,FileMode.OpenOrCreate))
-                            FS.Write(Encoding.ASCII.GetBytes(ExternFile[Path]),0,ExternFile[Path].Length);
+                        using (FileStream FS = File.Open(Path, FileMode.OpenOrCreate))
+                            FS.Write(Encoding.ASCII.GetBytes(ExternFile[Path]), 0, ExternFile[Path].Length);
                     }
 
                 MessageErro = String.Empty;
+                InvokeFunctions.Invoke(FunctionsEnum.ApplyConfigs, MessageErro);
                 return true;
             }
             catch (Exception ex)
             {
                 MessageErro = ex.Message;
+                InvokeFunctions.Invoke(FunctionsEnum.ApplyConfigs, MessageErro);
                 return false;
             }
         }

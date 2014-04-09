@@ -30,16 +30,16 @@
         {
             this.itemPanel1 = new DevComponents.DotNetBar.ItemPanel();
             this.itemContainer1 = new DevComponents.DotNetBar.ItemContainer();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TileStartGame = new DevComponents.DotNetBar.Metro.MetroTileItem();
             this.TileSettingsGame = new DevComponents.DotNetBar.Metro.MetroTileItem();
             this.TileSite = new DevComponents.DotNetBar.Metro.MetroTileItem();
             this.TileNews = new DevComponents.DotNetBar.Metro.MetroTileItem();
             this.TileForum = new DevComponents.DotNetBar.Metro.MetroTileItem();
             this.TileHelp = new DevComponents.DotNetBar.Metro.MetroTileItem();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,6 +94,61 @@
             // 
             // 
             this.itemContainer1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX1.Location = new System.Drawing.Point(9, 11);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(289, 40);
+            this.labelX1.TabIndex = 3;
+            this.labelX1.Text = "GLauncher Soft.";
+            // 
+            // labelX2
+            // 
+            this.labelX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(398, 11);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(196, 47);
+            this.labelX2.TabIndex = 6;
+            this.labelX2.Text = "<div align=\"right\"><font size=\"+4\">Nick Jogador</font><br/>Player</div>";
+            // 
+            // labelX3
+            // 
+            this.labelX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelX3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX3.Location = new System.Drawing.Point(12, 321);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(81, 40);
+            this.labelX3.TabIndex = 3;
+            this.labelX3.Text = "GL Team";
+            this.labelX3.Click += new System.EventHandler(this.labelX3_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::GLauncherForm.Properties.Resources.launcher_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(600, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // TileStartGame
             // 
@@ -217,60 +272,6 @@
             this.TileHelp.TileStyle.TextColor = System.Drawing.Color.White;
             this.TileHelp.Click += new System.EventHandler(this.TileHelp_Click);
             // 
-            // labelX1
-            // 
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX1.Location = new System.Drawing.Point(9, 11);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(289, 40);
-            this.labelX1.TabIndex = 3;
-            this.labelX1.Text = "GLauncher Soft.";
-            // 
-            // labelX2
-            // 
-            this.labelX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(411, 15);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(196, 47);
-            this.labelX2.TabIndex = 6;
-            this.labelX2.Text = "<div align=\"right\"><font size=\"+4\">Nick Jogador</font><br/>Player</div>";
-            // 
-            // labelX3
-            // 
-            this.labelX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelX3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX3.Location = new System.Drawing.Point(12, 321);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(81, 40);
-            this.labelX3.TabIndex = 3;
-            this.labelX3.Text = "GL Team";
-            this.labelX3.Click += new System.EventHandler(this.labelX3_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::GLauncherForm.Properties.Resources.Person;
-            this.pictureBox1.Location = new System.Drawing.Point(613, 15);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(54, 47);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainControl
             // 
             this.Controls.Add(this.labelX3);
@@ -289,7 +290,6 @@
 
         private DevComponents.DotNetBar.ItemPanel itemPanel1;
         private DevComponents.DotNetBar.LabelX labelX1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.ItemContainer itemContainer1;
         public DevComponents.DotNetBar.Metro.MetroTileItem TileStartGame;
@@ -299,6 +299,7 @@
         private DevComponents.DotNetBar.Metro.MetroTileItem TileSite;
         private DevComponents.DotNetBar.Metro.MetroTileItem TileForum;
         private DevComponents.DotNetBar.Metro.MetroTileItem TileHelp;
+        public System.Windows.Forms.PictureBox pictureBox1;
 
 
     }

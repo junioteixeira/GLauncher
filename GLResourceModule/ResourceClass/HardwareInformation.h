@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////
 //                GLauncher (GLModule)                    //
-//                       GTeam                            //
+//                       GLTeam                           //
 //  Este é um projeto Open Source, mantenha os créditos   //
-//               MeTaL,Oxyfgp,tDarkFall                   //
+//                   MeTaL, Oxyfgp                        //
 //                                                        //
 //                  LAUS DEO SEMPER!                      //
 ////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ namespace GLResourceModule
 		property UInt16 Family;
 		property String^ Manufacturer;
 		property String^ Name;
-		property UInt32 NumberOfCores;//Não disponível para Windows XP e Windows Server 2003
+		property UInt32 NumberOfCores; //Não disponível para Windows XP e Windows Server 2003
 
 	internal:
 		CPUInformation(void) { };

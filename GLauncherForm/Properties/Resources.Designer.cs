@@ -133,6 +133,16 @@ namespace GLauncherForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap launcher_icon {
+            get {
+                object obj = ResourceManager.GetObject("launcher-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap muonline_logo_32169 {
             get {
                 object obj = ResourceManager.GetObject("muonline-logo-32169", resourceCulture);
@@ -166,6 +176,36 @@ namespace GLauncherForm.Properties {
         internal static System.Drawing.Bitmap pointer {
             get {
                 object obj = ResourceManager.GetObject("pointer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap puzzle_icon {
+            get {
+                object obj = ResourceManager.GetObject("puzzle-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap puzzle_icon_anon {
+            get {
+                object obj = ResourceManager.GetObject("puzzle-icon_anon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap puzzle_icon_safe {
+            get {
+                object obj = ResourceManager.GetObject("puzzle-icon_safe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -97,6 +97,7 @@
             // 
             // 
             this.slMusic.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.slMusic.FocusCuesEnabled = false;
             this.slMusic.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.slMusic.Location = new System.Drawing.Point(92, 135);
             this.slMusic.Name = "slMusic";
@@ -126,6 +127,7 @@
             // 
             // 
             this.slSound.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.slSound.FocusCuesEnabled = false;
             this.slSound.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.slSound.Location = new System.Drawing.Point(92, 164);
             this.slSound.Name = "slSound";
@@ -155,6 +157,7 @@
             // 
             // 
             this.chkWindowMode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chkWindowMode.FocusCuesEnabled = false;
             this.chkWindowMode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkWindowMode.Location = new System.Drawing.Point(115, 193);
             this.chkWindowMode.Name = "chkWindowMode";
@@ -170,6 +173,7 @@
             // 
             // 
             this.chkTopMost.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chkTopMost.FocusCuesEnabled = false;
             this.chkTopMost.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkTopMost.Location = new System.Drawing.Point(221, 193);
             this.chkTopMost.Name = "chkTopMost";
@@ -180,7 +184,7 @@
             // 
             // superTabControl1
             // 
-            this.superTabControl1.BackColor = System.Drawing.Color.White;
+            this.superTabControl1.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
@@ -371,6 +375,7 @@
             this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX2.FocusCuesEnabled = false;
             this.buttonX2.Location = new System.Drawing.Point(83, 295);
             this.buttonX2.Name = "buttonX2";
             this.buttonX2.Size = new System.Drawing.Size(75, 23);
@@ -384,6 +389,7 @@
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.FocusCuesEnabled = false;
             this.buttonX1.Location = new System.Drawing.Point(163, 295);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(75, 23);
@@ -396,6 +402,7 @@
             this.buttonX3.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonX3.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX3.FocusCuesEnabled = false;
             this.buttonX3.Location = new System.Drawing.Point(242, 295);
             this.buttonX3.Name = "buttonX3";
             this.buttonX3.Size = new System.Drawing.Size(75, 23);

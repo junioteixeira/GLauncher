@@ -31,6 +31,7 @@ namespace GLauncherForm.Theme_Metro
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.metroShell1 = new DevComponents.DotNetBar.Metro.MetroShell();
             this.metroTabPanel1 = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.advTree1 = new DevComponents.AdvTree.AdvTree();
@@ -40,9 +41,9 @@ namespace GLauncherForm.Theme_Metro
             this.columnHeader4 = new DevComponents.AdvTree.ColumnHeader();
             this.nodeConnector1 = new DevComponents.AdvTree.NodeConnector();
             this.elementStyle1 = new DevComponents.DotNetBar.ElementStyle();
+            this.metroTabPanel2 = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.metroTabPanel3 = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.webRanking = new System.Windows.Forms.WebBrowser();
-            this.metroTabPanel2 = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.TabNews = new DevComponents.DotNetBar.Metro.MetroTabItem();
             this.metroTabItem2 = new DevComponents.DotNetBar.Metro.MetroTabItem();
             this.TabRanking = new DevComponents.DotNetBar.Metro.MetroTabItem();
@@ -68,9 +69,9 @@ namespace GLauncherForm.Theme_Metro
             this.metroShell1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.metroShell1.CaptionFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroShell1.CaptionVisible = true;
-            this.metroShell1.Controls.Add(this.metroTabPanel2);
             this.metroShell1.Controls.Add(this.metroTabPanel1);
             this.metroShell1.Controls.Add(this.metroTabPanel3);
+            this.metroShell1.Controls.Add(this.metroTabPanel2);
             this.metroShell1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroShell1.ForeColor = System.Drawing.Color.Black;
             this.metroShell1.HelpButtonText = "Ajuda";
@@ -104,7 +105,7 @@ namespace GLauncherForm.Theme_Metro
             this.metroShell1.SystemText.QatPlaceAboveRibbonText = "&Place Quick Access Toolbar above the Ribbon";
             this.metroShell1.SystemText.QatPlaceBelowRibbonText = "&Place Quick Access Toolbar below the Ribbon";
             this.metroShell1.SystemText.QatRemoveItemText = "&Remove from Quick Access Toolbar";
-            this.metroShell1.TabIndex = 0;
+            this.metroShell1.TabIndex = 1;
             this.metroShell1.TabStripFont = new System.Drawing.Font("Segoe UI", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroShell1.Text = "metroShell1";
             // 
@@ -130,7 +131,6 @@ namespace GLauncherForm.Theme_Metro
             // 
             this.metroTabPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.metroTabPanel1.TabIndex = 1;
-            this.metroTabPanel1.Visible = false;
             // 
             // advTree1
             // 
@@ -191,6 +191,29 @@ namespace GLauncherForm.Theme_Metro
             this.elementStyle1.Name = "elementStyle1";
             this.elementStyle1.TextColor = System.Drawing.Color.Black;
             // 
+            // metroTabPanel2
+            // 
+            this.metroTabPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.metroTabPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroTabPanel2.Location = new System.Drawing.Point(0, 51);
+            this.metroTabPanel2.Name = "metroTabPanel2";
+            this.metroTabPanel2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.metroTabPanel2.Size = new System.Drawing.Size(733, 409);
+            // 
+            // 
+            // 
+            this.metroTabPanel2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.metroTabPanel2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.metroTabPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.metroTabPanel2.TabIndex = 2;
+            this.metroTabPanel2.Visible = false;
+            // 
             // metroTabPanel3
             // 
             this.metroTabPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -223,37 +246,15 @@ namespace GLauncherForm.Theme_Metro
             this.webRanking.Size = new System.Drawing.Size(733, 387);
             this.webRanking.TabIndex = 0;
             // 
-            // metroTabPanel2
-            // 
-            this.metroTabPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.metroTabPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTabPanel2.Location = new System.Drawing.Point(0, 51);
-            this.metroTabPanel2.Name = "metroTabPanel2";
-            this.metroTabPanel2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.metroTabPanel2.Size = new System.Drawing.Size(733, 409);
-            // 
-            // 
-            // 
-            this.metroTabPanel2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.metroTabPanel2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.metroTabPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.metroTabPanel2.TabIndex = 2;
-            // 
             // TabNews
             // 
+            this.TabNews.Checked = true;
             this.TabNews.Name = "TabNews";
             this.TabNews.Panel = this.metroTabPanel1;
             this.TabNews.Text = "Notícias";
             // 
             // metroTabItem2
             // 
-            this.metroTabItem2.Checked = true;
             this.metroTabItem2.Name = "metroTabItem2";
             this.metroTabItem2.Panel = this.metroTabPanel2;
             this.metroTabItem2.Text = "Estatísticas";
@@ -309,6 +310,7 @@ namespace GLauncherForm.Theme_Metro
             this.labelItem1});
             this.metroStatusBar1.Location = new System.Drawing.Point(0, 440);
             this.metroStatusBar1.Name = "metroStatusBar1";
+            this.metroStatusBar1.ResizeHandleVisible = false;
             this.metroStatusBar1.Size = new System.Drawing.Size(733, 21);
             this.metroStatusBar1.TabIndex = 1;
             this.metroStatusBar1.Text = "metroStatusBar1";
@@ -326,8 +328,10 @@ namespace GLauncherForm.Theme_Metro
             this.Controls.Add(this.metroStatusBar1);
             this.Controls.Add(this.metroShell1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GAME - GLauncher";
             this.metroShell1.ResumeLayout(false);

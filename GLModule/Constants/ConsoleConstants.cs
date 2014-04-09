@@ -21,8 +21,8 @@ namespace GLModule.Constants
 
         /// <summary>
         /// Escrever no console, caso esteja habilitado
-        /// Arg1 = Mensagem para escrever
-        /// Arg2 = Cor
+        /// <para>arg1 = Mensagem para escrever</para>
+        /// arg2 = Cor
         /// </summary>
         public static Action<string, Color> WriteInConsole;
     }

@@ -69,7 +69,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::GLauncherForm.Properties.Resources.muonline_logo_32169;
-            this.pictureBox1.Location = new System.Drawing.Point(-19, -38);
+            this.pictureBox1.Location = new System.Drawing.Point(-26, -38);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(353, 317);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -84,9 +84,9 @@
             // 
             // 
             this.lbInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbInfo.Location = new System.Drawing.Point(246, 223);
+            this.lbInfo.Location = new System.Drawing.Point(237, 206);
             this.lbInfo.Name = "lbInfo";
-            this.lbInfo.Size = new System.Drawing.Size(231, 27);
+            this.lbInfo.Size = new System.Drawing.Size(240, 44);
             this.lbInfo.TabIndex = 7;
             this.lbInfo.Text = "<div align=\"right\"><font size=\"+4\"></font></div>";
             // 

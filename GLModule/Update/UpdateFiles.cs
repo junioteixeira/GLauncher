@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Threading;
 using GLModule.Constants;
 using System.Net;
+using GLModule.PluginJS;
 
 namespace GLModule.Update
 {
@@ -45,43 +46,43 @@ namespace GLModule.Update
 
         /// <summary>
         /// Computar arquivos no client para verificação de update
-        /// Verifica quais arquivos necessitam de atualização
+        /// <para/>Verifica quais arquivos necessitam de atualização
         /// </summary>
         /// <param name="DataUpdate">Dictionary recebida do servidor contendo nome e hash dos arquivos para update</param>
-        public static void ComputeFilesInfo(Dictionary<string, string> DataUpdate)
+        public static void ComputeFilesInfo(List<FileControlUpdate> DataUpdate, string UrlUpdate)
         {
             new Thread(delegate()
             {
                 int TotalFiles = DataUpdate.Count;
                 OnComputeFileStarted(TotalFiles);
-                string[] Files = DataUpdate.Keys.ToArray();
                 List<string> FilesToUpdate = new List<string>();
-                for (int i = 0; i < Files.Length; i++)
+                for (int i = 0; i < TotalFiles; i++)
                 {
-                    if (!File.Exists(Files[i]))
-                        FilesToUpdate.Add(Files[i]);
-                    else
+                    if (DataUpdate[i].FileValidation == TypeFileValidation.NoVerify) { continue; }
+                    if (!File.Exists(DataUpdate[i].Name))
+                        FilesToUpdate.Add(DataUpdate[i].Name);
+                    else if(DataUpdate[i].FileValidation == TypeFileValidation.Sync)
                     {
-                        using (FileStream fileStream = File.Open(Files[i], FileMode.Open))
+                        using (FileStream fileStream = File.Open(DataUpdate[i].Name, FileMode.Open))
                         {
                             byte[] HashFile = UpdateConstants.TypeHash.ComputeHash(fileStream);
                             string Hash = BitConverter.ToString(HashFile).Replace("-", string.Empty);
-                            if (Hash != DataUpdate[Files[i]])
-                                FilesToUpdate.Add(Files[i]);
+                            if (Hash != DataUpdate[i].Hash)
+                                FilesToUpdate.Add(DataUpdate[i].Name);
                         }
                     }
-                    OnComputeFileProgressed(((i * 100) / Files.Length), Files[i]);
+                    OnComputeFileProgressed(((i * 100) / TotalFiles), DataUpdate[i]);
                 }
-                OnComputeFileCompleted(FilesToUpdate);
+                OnComputeFileCompleted(FilesToUpdate, UrlUpdate);
             }).Start();
         }
 
         /// <summary>
         /// IMPORTANTE: Invocar esse método dentro do escopo do evento ComputeFileCompleted e passar o mesmo parâmetro recebido para dar início ao update
-        /// Atualiza os arquivos necessários
+        /// <para/>Atualiza os arquivos necessários
         /// </summary>
         /// <param name="FilesToUpdate">List com o nome dos arquivos que devem ser atualizados</param>
-        public static void InitializeUpdate(List<string> FilesToUpdate)
+        public static void InitializeUpdate(List<string> FilesToUpdate, string UrlUpdate)
         {
             new Thread(delegate()
             {
@@ -91,7 +92,7 @@ namespace GLModule.Update
                     for (int i = 0; i < FilesToUpdate.Count; i++)
                     {
                         OnUpdateFileStarted(FilesToUpdate[i]);
-                        update.DownloadFile(UpdateConstants.UrlUpdate, FilesToUpdate[i]);
+                        update.DownloadFile(UrlUpdate, FilesToUpdate[i]);
                         OnUpdateFileCompleted(i, (i * 100) / FilesToUpdate.Count);
                     }
                 }
@@ -100,45 +101,62 @@ namespace GLModule.Update
 
         private static void OnUpdateFileStarted(string NameFile)
         {
-            InvokeControlDelegate(UpdateFileStarted, NameFile);
+            InvokeFunctions.Invoke(FunctionsEnum.UpdateFileStarted, NameFile);
+            Control control = UpdateFileStarted.Target as Control;
+            if (control.InvokeRequired)
+                control.Invoke(UpdateFileStarted, NameFile);
+            else
+                UpdateFileStarted(NameFile);
         }
 
         private static void OnUpdateFileProgressed(DownloadProgressChangedEventArgs e)
         {
-            InvokeControlDelegate(UpdateFileProgressed, e);
+            InvokeFunctions.Invoke(FunctionsEnum.UpdateFileProgressed, e);
+            Control control = UpdateFileProgressed.Target as Control;
+            if (control.InvokeRequired)
+                control.Invoke(UpdateFileProgressed, e);
+            else
+                UpdateFileProgressed(e);
         }
 
         private static void OnUpdateFileCompleted(int TotalFilesDownloaded, int PercetageTotal)
         {
-            InvokeControlDelegate(UpdateFileCompleted, TotalFilesDownloaded, PercetageTotal);
+            InvokeFunctions.Invoke(FunctionsEnum.UpdateFileCompleted, TotalFilesDownloaded, PercetageTotal);
+            Control control = UpdateFileCompleted.Target as Control;
+            if (control.InvokeRequired)
+                control.Invoke(UpdateFileCompleted, TotalFilesDownloaded, PercetageTotal);
+            else
+                UpdateFileCompleted(TotalFilesDownloaded, PercetageTotal);
         }
 
         private static void OnComputeFileStarted(int TotalFiles)
         {
-            InvokeControlDelegate(ComputeFileStarted, TotalFiles);
-        }
-
-        private static void OnComputeFileProgressed(int Percentage, string File)
-        {
-            InvokeControlDelegate(ComputeFileProgressed, Percentage, File);
-        }
-
-        private static void OnComputeFileCompleted(List<string> FilesToUpdate)
-        {
-            InvokeControlDelegate(ComputeFileCompleted, FilesToUpdate);
-        }
-
-        private static void InvokeControlDelegate(Delegate EventOrDelegate, params object[] Args)
-        {
-            Control control = EventOrDelegate.Target as Control;
+            InvokeFunctions.Invoke(FunctionsEnum.ComputeFileStarted, TotalFiles);
+            Control control = ComputeFileStarted.Target as Control;
             if (control.InvokeRequired)
-            {
-                control.Invoke(EventOrDelegate, Args);
-            }
+                control.Invoke(ComputeFileStarted, TotalFiles);
             else
-            {
-                EventOrDelegate.DynamicInvoke(Args);
-            }
+                ComputeFileStarted(TotalFiles);
+        }
+
+        private static void OnComputeFileProgressed(int Percentage, FileControlUpdate File)
+        {
+            InvokeFunctions.Invoke(FunctionsEnum.ComputeFileProgressed, Percentage, File);
+            Control control = ComputeFileProgressed.Target as Control;
+            if (control.InvokeRequired)
+                control.Invoke(ComputeFileProgressed, Percentage, File);
+            else
+                ComputeFileProgressed(Percentage, File);
+        }
+
+        private static void OnComputeFileCompleted(List<string> FilesToUpdate, string UrlUpdate)
+        {
+            InvokeFunctions.Invoke(FunctionsEnum.ComputeFileCompleted, FilesToUpdate.ToArray());
+            Control control = ComputeFileCompleted.Target as Control;
+            if (control.InvokeRequired)
+                control.Invoke(ComputeFileCompleted, FilesToUpdate,UrlUpdate);
+            else
+                ComputeFileCompleted(FilesToUpdate, UrlUpdate);
         }
     }
 }

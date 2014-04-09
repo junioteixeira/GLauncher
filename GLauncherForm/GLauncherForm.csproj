@@ -16,6 +16,21 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -28,7 +43,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -61,9 +76,16 @@
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>GLauncher.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=10.9.0.1, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\Aprendizagem\C#\Json50r8\Bin\Net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -78,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticInstances.cs" />
     <Compile Include="Theme Metro\ConsoleWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +108,12 @@
       <DependentUpon>ConsoleWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Theme Metro\Extension.cs" />
+    <Compile Include="Theme Metro\LoginControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Theme Metro\LoginControl.Designer.cs">
+      <DependentUpon>LoginControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Theme Metro\MainControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,6 +131,12 @@
     </Compile>
     <Compile Include="Theme Metro\SettingsGameControl.Designer.cs">
       <DependentUpon>SettingsGameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Theme Metro\SettingsGLControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Theme Metro\SettingsGLControl.Designer.cs">
+      <DependentUpon>SettingsGLControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Theme Metro\SplashForm.cs">
       <SubType>Form</SubType>
@@ -122,6 +157,9 @@
     <EmbeddedResource Include="Theme Metro\ConsoleWindow.resx">
       <DependentUpon>ConsoleWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Theme Metro\LoginControl.resx">
+      <DependentUpon>LoginControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Theme Metro\MainControl.resx">
       <DependentUpon>MainControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Theme Metro\SettingsGameControl.resx">
       <DependentUpon>SettingsGameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Theme Metro\SettingsGLControl.resx">
+      <DependentUpon>SettingsGLControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Theme Metro\SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
@@ -190,6 +231,43 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Theme Metro\Images\muonline-logo-32169.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Theme Metro\Images\puzzle-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Theme Metro\Images\puzzle-icon_anon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Theme Metro\Images\puzzle-icon_safe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Theme Metro\Images\launcher-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GLauncher.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

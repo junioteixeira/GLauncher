@@ -34,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -50,7 +51,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Jint.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Visual Studio 2010\Projects\Aprendizagem\C#\Json50r8\Bin\Net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -65,14 +66,14 @@
   <ItemGroup>
     <Compile Include="Constants\ConsoleConstants.cs" />
     <Compile Include="Constants\GameConstants.cs" />
-    <Compile Include="Constants\PluginJS.cs" />
+    <Compile Include="Constants\PluginConstants.cs" />
     <Compile Include="Constants\SettingsGameConstants.cs" />
     <Compile Include="Constants\TcpConstants.cs" />
     <Compile Include="Constants\UpdateConstants.cs" />
-    <Compile Include="PluginJS\Engines.cs" />
-    <Compile Include="PluginJS\FunctionsEnum.cs" />
-    <Compile Include="PluginJS\InvokeFunctions.cs" />
-    <Compile Include="PluginJS\RegisterFunction.cs" />
+    <Compile Include="Plugin\Engines.cs" />
+    <Compile Include="Plugin\FunctionsEnum.cs" />
+    <Compile Include="Plugin\InvokeFunctions.cs" />
+    <Compile Include="Plugin\RegisterFunction.cs" />
     <Compile Include="SettingsGame\SettingsAttributes.cs" />
     <Compile Include="SettingsGame\SettingsGame.cs" />
     <Compile Include="Tcp\ClientTCP.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Tcp\Extensions.cs" />
     <Compile Include="Tcp\TcpData\TypeCommand.cs" />
     <Compile Include="Update\Delegates.cs" />
+    <Compile Include="Update\FileControlUpdate.cs" />
+    <Compile Include="Update\TypeFileValidation.cs" />
     <Compile Include="Update\UpdateFiles.cs" />
     <Compile Include="Warnings\Hardware\CpuWarning.cs" />
     <Compile Include="Warnings\Hardware\GpuWarning.cs" />
